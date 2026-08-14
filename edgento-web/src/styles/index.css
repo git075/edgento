@@ -1,0 +1,19 @@
+/**
+ * Global Styles
+ * Resets and variables for the Edgento application.
+ */
+@import './animations.css';
+
+:root {
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

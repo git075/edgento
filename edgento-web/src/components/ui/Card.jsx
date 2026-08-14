@@ -1,0 +1,13 @@
+/**
+ * Card Component
+ * Container for grouped content.
+ */
+import React from 'react';
+
+const Card = ({ children }) => (
+  <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+    {children}
+  </div>
+);
+
+export default Card;

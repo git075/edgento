@@ -1,0 +1,46 @@
+# application.yml — Shared configuration loaded for ALL profiles.
+# Profile-specific files (application-dev.yml, application-prod.yml)
+# override these values for their environment.
+
+spring:
+  application:
+    name: edgento-api
+
+  # JPA / Hibernate settings
+  jpa:
+    # hibernate.ddl-auto: NEVER let Hibernate modify the schema.
+    # We use Flyway for all schema changes (controlled, versioned SQL).
+    # 'validate' = Hibernate checks entity mappings match the DB schema on startup.
+    hibernate:
+      ddl-auto: validate
+    # Show SQL queries in logs (useful for debugging; override in prod to false)
+    show-sql: false
+    properties:
+      hibernate:
+        # Format SQL queries in logs for readability
+        format_sql: true
+        # Tell Hibernate we're using PostgreSQL dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Flyway migration settings
+  flyway:
+    # Location of SQL migration files
+    locations: classpath:db/migration
+    # Baseline on migrate: if the DB already exists without Flyway history,
+    # don't fail — treat current state as the baseline.
+    baseline-on-migrate: true
+
+# Server settings
+server:
+  port: 8080
+
+# OpenAI configuration (values injected from environment variables)
+openai:
+  api-key: ${OPENAI_API_KEY:placeholder}  # Set OPENAI_API_KEY env var
+  model: gpt-4o-mini
+  max-tokens: 1000
+
+# Logging
+logging:
+  level:
+    com.edgento: INFO

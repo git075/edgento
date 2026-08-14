@@ -1,0 +1,12 @@
+# Prod profile configuration
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: false
+
+# Restrict CORS in production
+cors:
+  allowed-origins: "https://edgento.com"
