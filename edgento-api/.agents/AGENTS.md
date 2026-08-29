@@ -1,5 +1,28 @@
 # Edgento API — Coding Rules for AI Assistants
 
+## 🔴 MANDATORY RULE #0: POST-PHASE EXPLANATION (NEVER SKIP THIS)
+After completing ANY phase, feature, or significant block of work, you MUST
+automatically provide a full elaborated explanation WITHOUT the user having to ask.
+
+This explanation is NOT optional. It is a core deliverable of every task.
+
+The explanation MUST cover every file, class, or concept introduced, using this exact format for EACH one:
+
+1. **WHAT**: What is it? (Plain English, no jargon)
+2. **WHY**: Why did we create/use it? (Business + technical reason)
+3. **HOW**: How does it work in this project specifically? (Concrete Edgento example)
+4. **ALTERNATIVES**: What are the alternatives out there?
+5. **WHY NOT ALTERNATIVES**: Why did we choose this approach over those alternatives?
+
+The developer on this project is a BEGINNER. This is their FIRST project. They need
+to understand everything deeply. Assume ZERO prior knowledge.
+
+IF YOU COMPLETE A TASK AND DON'T AUTOMATICALLY EXPLAIN IT IN THIS FORMAT, YOU HAVE
+FAILED TO COMPLETE THE TASK — even if the code is perfect.
+
+---
+
+
 ## Project Context
 Edgento API is a Spring Boot 3.x backend that serves:
 1. Lead Management: capture and manage leads from the Edgento website.

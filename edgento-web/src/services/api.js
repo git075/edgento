@@ -1,13 +1,15 @@
-/**
- * API Service
- * Centralized Axios instance with interceptors.
- */
 import axios from 'axios';
 
-// 📚 CONCEPT: Create a base axios instance to handle common headers and interceptors.
+/**
+ * Centralized Axios instance pointing to the Spring Boot backend.
+ */
 const api = axios.create({
-  baseURL: '/api',
-  timeout: 10000,
+  // Read from Vite environment variables for production, fallback to localhost for dev
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1',
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export default api;

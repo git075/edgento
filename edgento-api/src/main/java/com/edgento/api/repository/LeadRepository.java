@@ -1,7 +1,7 @@
-/**
- * WHAT: Repository for Lead entity.
- * WHY: Provides basic CRUD operations and query methods for Leads in the database.
- * HOW: Extends JpaRepository which Spring Data JPA automatically implements at runtime.
+/*
+ * WHAT: LeadRepository now needs a findByEmail method for AgentService.
+ * WHY:  When a user starts an audit, we check if their email already exists
+ *       as a lead so we don't create duplicate records.
  */
 package com.edgento.api.repository;
 
@@ -9,7 +9,12 @@ import com.edgento.api.model.entity.Lead;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-// 📚 CONCEPT: @Repository - Marks the interface as a Data Access Object (DAO) that encapsulates storage, retrieval, and search behavior.
+import java.util.Optional;
+import java.util.UUID;
+
 @Repository
-public interface LeadRepository extends JpaRepository<Lead, Long> {
+public interface LeadRepository extends JpaRepository<Lead, UUID> {
+
+    // Spring Data auto-generates: SELECT * FROM leads WHERE email = ? LIMIT 1
+    Optional<Lead> findByEmail(String email);
 }

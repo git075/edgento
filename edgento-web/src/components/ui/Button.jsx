@@ -1,20 +1,34 @@
-/**
- * Button Component
- * Reusable UI button.
- */
 import React from 'react';
 
-// 📚 CONCEPT: Reusable UI components ensure consistent styling.
-const Button = ({ children, onClick, variant = 'primary' }) => {
-  const style = {
-    padding: '8px 16px',
-    background: variant === 'primary' ? 'var(--primary)' : 'transparent',
-    color: variant === 'primary' ? 'white' : 'var(--text-color)',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  };
-  return <button style={style} onClick={onClick}>{children}</button>;
+/**
+ * Reusable Button component matching the Edgento Design System.
+ */
+export const Button = ({
+  children,
+  onClick,
+  variant = 'primary', // primary, secondary, ghost
+  size = 'md', // sm, md, lg
+  className = '',
+  disabled = false,
+  type = 'button',
+  ...props
+}) => {
+  const baseClass = 'btn';
+  const variantClass = `btn--${variant}`;
+  const sizeClass = size !== 'md' ? `btn--${size}` : '';
+  const combinedClasses = [baseClass, variantClass, sizeClass, className].filter(Boolean).join(' ');
+
+  return (
+    <button
+      type={type}
+      className={combinedClasses}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 };
 
 export default Button;

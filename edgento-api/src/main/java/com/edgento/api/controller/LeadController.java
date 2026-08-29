@@ -1,28 +1,48 @@
-/**
- * WHAT: Controller handling lead-related operations.
- * WHY: Exposes REST APIs for creating and fetching leads.
- * HOW: Injects LeadService to perform business logic.
+/*
+ * WHAT: REST Controller for managing Leads.
+ * WHY:  Handles HTTP requests (POST /api/v1/leads), validates them, and delegates to LeadService.
+ * HOW:  Annotated with @RestController and @RequestMapping.
  */
 package com.edgento.api.controller;
 
-// 📚 CONCEPT: @RestController - A convenience annotation that is itself annotated with @Controller and @ResponseBody.
 import com.edgento.api.model.dto.request.CreateLeadRequest;
 import com.edgento.api.model.dto.response.LeadResponse;
+import com.edgento.api.service.LeadService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // Marks this class as a controller where every method returns a domain object instead of a view.
-@RequestMapping("/api/v1/leads") // Maps HTTP requests to handler methods of MVC and REST controllers.
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/v1/leads")
+@RequiredArgsConstructor
 public class LeadController {
 
-    /**
-     * Creates a new lead.
-     * @param request DTO containing lead details.
-     * @return ResponseEntity with the created lead response.
-     */
-    @PostMapping // Maps HTTP POST requests onto specific handler methods.
-    public ResponseEntity<LeadResponse> createLead(@RequestBody CreateLeadRequest request) { // @RequestBody indicates a method parameter should be bound to the body of the web request.
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+    private final LeadService leadService;
+
+    // POST /api/v1/leads
+    @PostMapping
+    public ResponseEntity<LeadResponse> createLead(@Valid @RequestBody CreateLeadRequest request) {
+        LeadResponse response = leadService.createLead(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    // GET /api/v1/leads
+    @GetMapping
+    public ResponseEntity<Page<LeadResponse>> getAllLeads(Pageable pageable) {
+        Page<LeadResponse> response = leadService.getAllLeads(pageable);
+        return ResponseEntity.ok(response);
+    }
+
+    // GET /api/v1/leads/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<LeadResponse> getLeadById(@PathVariable UUID id) {
+        LeadResponse response = leadService.getLeadById(id);
+        return ResponseEntity.ok(response);
     }
 }

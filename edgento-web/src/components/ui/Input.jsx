@@ -1,17 +1,23 @@
-/**
- * Input Component
- * Reusable text input.
- */
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Input = ({ value, onChange, placeholder }) => (
-  <input 
-    type="text" 
-    value={value} 
-    onChange={onChange} 
-    placeholder={placeholder}
-    style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
-  />
-);
+/**
+ * Reusable Input component matching the Edgento Design System.
+ */
+export const Input = forwardRef(({
+  className = '',
+  type = 'text',
+  ...props
+}, ref) => {
+  return (
+    <input
+      ref={ref}
+      type={type}
+      className={`input ${className}`}
+      {...props}
+    />
+  );
+});
+
+Input.displayName = 'Input';
 
 export default Input;

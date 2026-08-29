@@ -11,8 +11,10 @@ package com.edgento.api;
 // @ComponentScan: Tells Spring to look for other components, configurations, and services in the com.edgento.api package.
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication // Configures this class as a Spring Boot application
+@EnableAsync // Enables support for asynchronous task execution
 public class EdgentoApiApplication {
 
     /**

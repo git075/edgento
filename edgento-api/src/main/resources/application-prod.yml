@@ -4,9 +4,32 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    hikari:
+      # 📚 CONCEPT: Connection Pooling
+      # HikariCP keeps a pool of open DB connections ready to use. 
+      # The default is 10. For a production server handling concurrent FSM and OpenAI
+      # requests, 10 is too low and leads to "Connection timeout" errors under load.
+      maximum-pool-size: 50
+      minimum-idle: 10
+      idle-timeout: 300000
+      connection-timeout: 20000
   jpa:
     show-sql: false
+    hibernate:
+      ddl-auto: validate # NEVER update schema automatically in prod (Flyway handles it)
+
+# 📚 CONCEPT: Production Logging
+# In development, we want DEBUG logs to see what's happening.
+# In production, DEBUG logs fill up the hard drive rapidly and can leak PII.
+# We explicitly set logging to INFO (or WARN) in prod.
+logging:
+  level:
+    root: INFO
+    com.edgento: INFO
+    org.hibernate.SQL: ERROR
 
 # Restrict CORS in production
 cors:
-  allowed-origins: "https://edgento.com"
+  allowed-origins: 
+    - "https://edgento.com"
+    - "https://www.edgento.com"

@@ -41,3 +41,6 @@ build/
 *.log
 # Ignore local development profile since it contains local database passwords
 application-dev.yml
+
+### Editor History ###
+.history/

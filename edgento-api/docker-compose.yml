@@ -7,10 +7,13 @@ services:
       POSTGRES_DB: edgento_dev
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+    # Use md5 auth instead of scram-sha-256 — simpler, avoids JDBC compatibility issues
+    command: postgres -c hba_file=/etc/postgresql/pg_hba.conf
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
 
   api:
     build: .

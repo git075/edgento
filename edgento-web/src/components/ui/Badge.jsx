@@ -1,13 +1,23 @@
-/**
- * Badge Component
- * Small status indicator.
- */
 import React from 'react';
 
-const Badge = ({ text, color = 'var(--primary)' }) => (
-  <span style={{ background: color, color: 'white', padding: '4px 8px', borderRadius: '12px', fontSize: '12px' }}>
-    {text}
-  </span>
-);
+/**
+ * Reusable Badge component matching the Edgento Design System.
+ */
+export const Badge = ({
+  children,
+  status = 'info', // live, beta, coming-soon, info
+  className = '',
+  ...props
+}) => {
+  const baseClass = 'badge';
+  const statusClass = `badge--${status}`;
+  const combinedClasses = [baseClass, statusClass, className].filter(Boolean).join(' ');
+
+  return (
+    <span className={combinedClasses} {...props}>
+      {children}
+    </span>
+  );
+};
 
 export default Badge;
