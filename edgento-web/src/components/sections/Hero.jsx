@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
 
         {/* Right Side: Engineered Workflow Visual */}
-        <div className="hidden-mobile animate-fade-in-up delay-300" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', position: 'relative', zIndex: 1 }}>
+        <div className="animate-fade-in-up delay-300" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, marginTop: 'var(--space-12)' }}>
           
           <div style={{
             position: 'relative',
@@ -53,16 +53,19 @@ const Hero = () => {
             transformStyle: 'preserve-3d'
           }}>
             
-            {/* SVG Connecting Lines */}
+            {/* SVG Connecting Lines (Visible on both) */}
             <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, overflow: 'visible' }}>
-              <path d="M 120 80 Q 200 80 200 160" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M 200 160 Q 200 240 280 240" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M 200 160 Q 200 80 280 80" fill="none" stroke="rgba(212, 175, 55, 0.4)" strokeWidth="2" />
+              <path className="hidden-mobile" d="M 120 80 Q 200 80 200 160" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="4 4" />
+              <path className="hidden-mobile" d="M 200 160 Q 200 240 280 240" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="4 4" />
+              <path className="hidden-mobile" d="M 200 160 Q 200 80 280 80" fill="none" stroke="rgba(212, 175, 55, 0.4)" strokeWidth="2" />
               <circle cx="200" cy="160" r="4" fill="var(--color-slate-900)" stroke="var(--color-gold)" strokeWidth="2" />
+              
+              {/* Extra glowing ring for mobile presence */}
+              <circle cx="200" cy="160" r="40" fill="none" stroke="rgba(212, 175, 55, 0.2)" strokeWidth="1" strokeDasharray="4 4" className="status-dot" style={{ animationDuration: '4s' }} />
             </svg>
 
             {/* Node 1 */}
-            <div style={{ position: 'absolute', top: '50px', left: '20px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <div className="hidden-mobile" style={{ position: 'absolute', top: '50px', left: '20px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-gray-400)' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"></path></svg>
               </div>
@@ -72,8 +75,8 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Node 2 (The Core) */}
-            <div style={{ position: 'absolute', top: '120px', left: '160px', zIndex: 2, padding: '16px 20px', background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(212, 175, 55, 0.3)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', gap: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 175, 55, 0.1) inset' }}>
+            {/* Node 2 (The Core - Visible on Mobile too) */}
+            <div style={{ position: 'absolute', top: '120px', left: '50%', transform: 'translateX(-50%)', zIndex: 2, padding: '16px 20px', background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(212, 175, 55, 0.3)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', gap: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 175, 55, 0.1) inset' }}>
               <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-gold)' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
               </div>
@@ -85,7 +88,7 @@ const Hero = () => {
             </div>
 
             {/* Node 3 */}
-            <div style={{ position: 'absolute', top: '50px', left: '300px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <div className="hidden-mobile" style={{ position: 'absolute', top: '50px', left: '300px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-gray-400)' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
               </div>
@@ -96,7 +99,7 @@ const Hero = () => {
             </div>
 
             {/* Node 4 */}
-            <div style={{ position: 'absolute', top: '210px', left: '260px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <div className="hidden-mobile" style={{ position: 'absolute', top: '210px', left: '260px', zIndex: 1, padding: '12px 16px', background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-lg)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-gray-400)' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
               </div>
@@ -109,7 +112,7 @@ const Hero = () => {
           </div>
           
           {/* Subtle glow behind workflow */}
-          <div style={{ position: 'absolute', width: '300px', height: '300px', background: 'var(--color-gold)', filter: 'blur(100px)', opacity: 0.08, top: '50%', right: '10%', transform: 'translateY(-50%)', zIndex: -1 }}></div>
+          <div style={{ position: 'absolute', width: '300px', height: '300px', background: 'var(--color-gold)', filter: 'blur(100px)', opacity: 0.15, top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: -1 }}></div>
         </div>
       </div>
     </section>

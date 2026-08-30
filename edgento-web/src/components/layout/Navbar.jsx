@@ -76,7 +76,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="hidden-desktop" style={{
+        <div className="hidden-desktop animate-fade-in-up" style={{
           position: 'absolute',
           top: '80px',
           left: 0,
@@ -105,9 +105,9 @@ const Navbar = () => {
               {link.label}
             </NavLink>
           ))}
-          <Link to="/contact" onClick={() => setIsMenuOpen(false)} style={{ marginTop: 'var(--space-4)' }}>
-            <Button variant="primary" style={{ width: '100%' }}>Get Started</Button>
-          </Link>
+          <div style={{ marginTop: 'var(--space-4)' }} onClick={() => setIsMenuOpen(false)}>
+            <ChatWidget />
+          </div>
         </div>
       )}
     </nav>

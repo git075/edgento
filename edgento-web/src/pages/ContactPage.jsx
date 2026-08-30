@@ -23,8 +23,8 @@ const ContactPage = () => {
   return (
     <div style={{ padding: 'var(--space-24) 0' }}>
       <div className="container" style={{ maxWidth: '600px' }}>
-        <h1 style={{ fontSize: 'var(--text-4xl)', letterSpacing: '-0.04em', marginBottom: 'var(--space-2)', textAlign: 'center' }}>
-          Get in <span className="display-font" style={{ fontStyle: 'italic', fontWeight: 'normal' }}>touch</span>
+        <h1 className="font-heading" style={{ fontSize: 'var(--text-4xl)', letterSpacing: '-0.04em', marginBottom: 'var(--space-2)', textAlign: 'center' }}>
+          Get in <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>touch</span>
         </h1>
         <p style={{ textAlign: 'center', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-12)' }}>
           Have a project in mind? Let's discuss how we can help.
@@ -65,7 +65,7 @@ const ContactPage = () => {
             </Button>
 
             {status === 'success' && <div style={{ color: 'var(--color-success)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>Message sent successfully!</div>}
-            {status === 'error' && <div style={{ color: 'hsl(350, 60%, 50%)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>Failed to send message.</div>}
+            {status === 'error' && <div style={{ color: 'var(--color-error)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>Failed to send message.</div>}
           </form>
         </Card>
       </div>
