@@ -18,6 +18,11 @@ spring:
     hibernate:
       ddl-auto: validate # NEVER update schema automatically in prod (Flyway handles it)
 
+# Resend Email API Key
+# The real key MUST be set as an environment variable in Render
+resend:
+  api-key: ${RESEND_API_KEY}
+
 # 📚 CONCEPT: Production Logging
 # In development, we want DEBUG logs to see what's happening.
 # In production, DEBUG logs fill up the hard drive rapidly and can leak PII.
