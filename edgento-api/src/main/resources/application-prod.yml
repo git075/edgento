@@ -30,6 +30,4 @@ logging:
 
 # Restrict CORS in production
 cors:
-  allowed-origins: 
-    - "https://edgento.com"
-    - "https://www.edgento.com"
+  allowed-origins: "https://edgento.com,https://www.edgento.com"
