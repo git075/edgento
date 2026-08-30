@@ -24,6 +24,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+            // Integrate with our global CORS configuration (CorsConfig.java)
+            // Without this, Spring Security intercepts and blocks CORS preflight OPTIONS requests.
+            .cors(org.springframework.security.config.Customizer.withDefaults())
+            
             // 📚 CONCEPT: CSRF (Cross-Site Request Forgery)
             // CSRF protection is vital for apps that use cookies for authentication.
             // Since our API currently has no user authentication (and will use stateless JWTs later),
@@ -35,8 +39,11 @@ public class SecurityConfig {
                 // Allow anyone to start an audit and send messages
                 .requestMatchers(HttpMethod.POST, "/api/v1/agent/**").permitAll()
                 
-                // Allow anyone to submit a lead (e.g. from the Contact form)
+                // Allow anyone to submit a lead
                 .requestMatchers(HttpMethod.POST, "/api/v1/leads").permitAll()
+                
+                // Allow anyone to submit the contact form
+                .requestMatchers(HttpMethod.POST, "/api/v1/contact").permitAll()
                 
                 // (Future) The Admin Panel endpoints will go here and require ROLE_ADMIN
                 
