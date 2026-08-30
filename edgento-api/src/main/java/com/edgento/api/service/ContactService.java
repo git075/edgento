@@ -16,7 +16,7 @@ public class ContactService {
     private final EmailService emailService;
 
     // Hardcoded for now based on implementation plan open question.
-    private static final String ADMIN_EMAIL = "admin@edgento.com";
+    private static final String ADMIN_EMAIL = "anuragchoudhary9929@gmail.com";
 
     public void processContactSubmission(ContactRequest request) {
         log.info("Processing contact submission from: {}", request.getEmail());
