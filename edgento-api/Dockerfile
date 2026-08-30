@@ -6,7 +6,8 @@
 # ==========================================
 # STAGE 1: Build
 # ==========================================
-FROM eclipse-temurin:21-jdk-alpine AS builder
+# Using the official Maven image because the local maven wrapper (mvnw) is missing
+FROM maven:3.9.8-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /app
 
@@ -14,17 +15,14 @@ WORKDIR /app
 # We do this first because Docker caches layers. If pom.xml hasn't changed,
 # Docker skips downloading dependencies on the next build, saving minutes of time.
 COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw .
-# Give execute permission to the maven wrapper
-RUN chmod +x ./mvnw
+
 # Download dependencies (go offline so they are cached)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Step 2: Copy the actual source code and build the .jar
 COPY src ./src
 # We skip tests during the Docker build because they require a live database
-RUN ./mvnw package -DskipTests
+RUN mvn package -DskipTests
 
 # ==========================================
 # STAGE 2: Runtime
