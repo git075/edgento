@@ -43,8 +43,9 @@ COPY --from=builder /app/target/*.jar app.jar
 # Expose port 8080 to the outside world
 EXPOSE 8080
 
-# 📚 CONCEPT: Memory Tuning for Free Tiers
-# -XX:MaxRAMPercentage=75.0 tells Java it can only use 75% of the container's RAM.
-# If Render gives us 512MB, Java will cap its heap at 384MB, leaving the rest for the OS.
-# Without this, Java assumes it owns the whole machine, asks for too much, and crashes.
-ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-XX:+UseZGC", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
+# 📚 CONCEPT: Extreme Memory Tuning for 512MB Free Tiers
+# -Xmx256m: Hard limit the Heap to 256MB.
+# -XX:MaxMetaspaceSize=128m: Limit class metadata to 128MB.
+# -Xss256k: Shrink the thread stack size to use less memory per concurrent user.
+# -XX:+UseSerialGC: Use the Serial Garbage Collector. It is slightly slower than G1GC/ZGC but uses drastically less memory overhead.
+ENTRYPOINT ["java", "-Xmx256m", "-XX:MaxMetaspaceSize=128m", "-Xss256k", "-XX:+UseSerialGC", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
