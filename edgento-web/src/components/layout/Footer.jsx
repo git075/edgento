@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
+import Logo from '../ui/Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,9 +17,9 @@ const Footer = () => {
         <div className="grid-4" style={{ marginBottom: 'var(--space-16)' }}>
           {/* Brand Col */}
           <div style={{ gridColumn: 'span 1' }}>
-            <div className="font-heading" style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-4)', color: 'var(--color-white)' }}>
-              Edgento<span style={{ color: 'var(--color-gold)' }}>.</span>
-            </div>
+            <Link to="/" style={{ display: 'inline-block', marginBottom: 'var(--space-4)' }}>
+              <Logo />
+            </Link>
             <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-gray-200)', maxWidth: '250px' }}>
               Technology with an edge. We build bespoke software solutions for modern businesses.
             </p>

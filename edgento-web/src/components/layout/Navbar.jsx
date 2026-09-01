@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Button from '../ui/Button';
 import ChatWidget from '../agent/ChatWidget';
+import Logo from '../ui/Logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,11 +40,7 @@ const Navbar = () => {
       }}>
         {/* Logo */}
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', zIndex: 101 }}>
-          <span className="font-heading" style={{
-            fontSize: 'var(--text-3xl)',
-            color: 'var(--color-white)',
-            letterSpacing: '0.02em',
-          }}>Edgento</span>
+          <Logo />
         </Link>
 
         {/* Mobile Menu Toggle */}
